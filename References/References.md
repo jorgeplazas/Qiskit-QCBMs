@@ -6,8 +6,8 @@
  - B. Coyle, D. Mills, V. Danos, E. Kashefi <a href="https://www.nature.com/articles/s41534-020-00288-9"> *The Born supremacy: quantum advantage and training of an Ising Born machine* </a>. NPJ Quant. Inf. Vol 6, 60 (2020).
  
  ## Repos
- - <a href="https://github.com/aspuru-guzik-group/quantum-generative-models">/aspuru-guzik-group/quantum-generative-models </a>.
- - <a href="https://github.com/GiggleLiu/QuantumCircuitBornMachine">/GiggleLiu/QuantumCircuitBornMachine</a>.
+ - <a href="https://github.com/aspuru-guzik-group/quantum-generative-models">aspuru-guzik-group/quantum-generative-models </a>.
+ - <a href="https://github.com/GiggleLiu/QuantumCircuitBornMachine">GiggleLiu/QuantumCircuitBornMachine</a>.
 
  ## Various useful links
  - <a href="https://pennylane.ai/qml/demos/tutorial_qcbm">Quantum Circuit Born Machines - PennyLane Demos</a>.
