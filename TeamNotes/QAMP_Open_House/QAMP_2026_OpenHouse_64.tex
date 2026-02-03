@@ -1,0 +1,352 @@
+
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[russian]{babel}
+
+\logo{\includegraphics[width=.1\textwidth]{cat_2.png}}
+
+\usepackage{euler}
+
+\usetheme{Warsaw}
+\definecolor{ufvblue}{RGB}{2, 53, 95}
+\setbeamercolor{structure}{fg=ufvblue}
+\setbeamercolor{title}{fg=ufvblue, bg=white}
+\setbeamercolor{frametitle}{fg=ufvblue, bg=white}
+\setbeamercolor{section in head/foot}{bg=ufvblue, fg=white}
+\usecolortheme{owl}  % This is a dark theme color scheme
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{braket}
+
+\usepackage{verbatim}
+%\usepackage[spanish]{babel}
+
+
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Hi}{\mathbb{H}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cP}{\mathcal{P}}
+
+\newcommand{\id}{\mathrm{I}}
+
+
+
+
+% Information
+\title[$ \ket{\psi}$]{Qiskit $\otimes$ QCBMs\\ {\,} \\QAMP 2026 Open House }
+\date{ Quantum Circuit Born Machines in Qiskit }
+
+
+\author[$\bra{\psi} QCHPC$]{{\large{Issue 64}}}
+
+
+
+
+\titlegraphic{
+	\includegraphics[width=0.15\textwidth]{Qiskit_image_0.png}
+}
+
+\begin{document}
+	
+\frame{\titlepage}
+
+
+
+\begin{frame}{}
+\begin{columns}
+	% Column 1
+	\begin{column}{0.55\textwidth}
+		{\Large QAMP Open House} 	\vskip 0.3 truecm
+		{\Large Qiskit $\otimes$ QCBMs} 
+		\vskip 0.3 truecm
+		{\Large{Issue 64}}\\
+		\vskip 1.5 truecm
+		{\small {\bf{Speakers: \\Debshata Choudhury \\ Jorge Plazas }} \\ (mentees)}\vskip 0.2 truecm
+		
+		
+		{\small {\bf{Mentor: \\Natalie Hawkins }}}		
+	\end{column}
+
+	\begin{column}{0.5\textwidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=\textwidth]{Qiskit_image_2.png}
+
+		\end{figure}
+	\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{}
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+			{\Large Agenda } 
+			
+			\vskip 1.5 truecm
+\begin{itemize}
+	\item Quantum Circuit Born Machines. 
+	\item Building blocks and auxiliary functions. 
+	\item Experiments. 
+	\item QCBMs for molecule generation. 
+\end{itemize}			
+
+
+		
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\textwidth]{Qiskit_image_1.png}
+				
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+\begin{frame}{Quantum Circuit Born Machines}
+	
+	\begin{block}{}
+		\vskip 0.4 truecm
+		$\rightsquigarrow$ Hybrid intrinsic generative models that use quantum circuits to represent probability distributions. 
+	\end{block}
+	\vskip 0.4 truecm
+	\begin{center}
+		Distribution of data $\rightleftarrows$ Quantum state statistics
+	\end{center}
+	
+	\begin{eqnarray*}
+		\pi(X) &\sim&  |\braket{X | \psi_{\theta}}|^2
+	\end{eqnarray*}
+	
+	%	\includegraphics[width=.5\textwidth]{Quantum_Computer.jpg}
+	
+\end{frame}
+
+\begin{frame}{QCBMs - Building blocks}
+	
+
+The {\emph{circuit}} part of a QCBM consist of two kinds of layers:
+	\begin{itemize}
+		\item Rotation layers.
+		\item Entanglement layers.
+	\end{itemize}
+This structure can be seen as an instance of  the $$\mathrm{efficient\_su2}$$ ansatz in qiskit.  	
+
+State statistics are obtained via the  $$\mathrm{Sampler}$$ primitive. 
+
+\end{frame}
+
+\begin{frame}{QCBMs - Functions for training}
+
+\begin{block}{Kernels and similarity measures}
+In order to train the models various kernels and loss functions were implemented. These were used measure the discrepancy between sampled distributions and target distributions.   
+
+\pause 
+	\begin{itemize}
+		\item Radial Basis Function (RBF) Kernel
+		\item Squared Maximum Mean Discrepancy (MMD) Loss.
+		\item Kullback–Leibler (KL) Divergence.
+	\end{itemize} 
+ \end{block}
+	
+\end{frame}
+
+
+\begin{frame}{Discrete Gaussian experiment}
+	
+Sum of Three Dice (Discrete Gaussian) Experiment
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+			\begin{itemize}
+			\item Fidelity = 98.7\% 
+			
+			Generated distribution closely matches the target distribution.
+			\item Sinkhorn OT = 0.0925
+			
+			Negligible probability mass movement; near-perfect distribution alignment. 
+		\end{itemize} 	
+		\end{column}
+		
+	\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\textwidth]{Gaussian2}
+				
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+\begin{frame}{Discrete Gaussian experiment}
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+			\begin{itemize}
+				\item KL Divergence (low) 
+				
+	
+	 Minimal information loss between true and learned distributions. 
+			
+			\item MMD (low) 
+			
+			Strong sample-level similarity; effective global distribution matching.
+			\end{itemize} 	
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=.7\textwidth]{GaussianKLDiv}
+				
+				
+				\includegraphics[width=.7\textwidth]{GaussianMMDLoss}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Bars \& Stripes (BAS) Experiment}
+	
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+			\begin{itemize}
+			\item Fidelity = 72.7\% 
+			
+			Partial match with the target BAS distribution. 
+			
+			\item Sinkhorn OT = 0.4456 
+			
+			Moderate probability mass movement; incomplete alignment with BAS modes.
+			\end{itemize} 	
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=\textwidth]{BAS2}
+				
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+\begin{frame}{Bars \& Stripes (BAS) Experiment}
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+			\begin{itemize}
+				\item  KL Divergence (moderate)
+				
+				Noticeable divergence due to probability leakage into invalid patterns.
+				
+				\item MMD (moderate)
+				
+				Structural similarity present, but mode precision remains imperfect.
+			\end{itemize} 	
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=.7\textwidth]{BASKLDiv}
+				
+				
+				\includegraphics[width=.7\textwidth]{BASMMDLoss}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+\begin{frame}{Chemical space exploration and molecule generation}
+	\begin{block}{Our project was partly inspired by }
+	
+	
+	{\emph{Quantum-computing-enhanced algorithm unveils potential KRAS inhibitors.}} by Ghazi Vakili, M., Gorgulla, C., Snider, J. et al.  
+	
+	[Nature Biotechnology (2025)]
+	\end{block}
+	
+Where QCBMs are used as a component in a hybrid generative model used for the generation of novel KRAS inhibitors\footnote{KRAS is a common and hard-to-treat oncogene in many solid cancers.}.	
+	
+\end{frame}
+
+\begin{frame}{Chemical space exploration and molecule generation \\ (After [Aspuru-Guzik et al.])}
+
+		We used STONED-SELFIES in conjunction with QCBMs to learn the probability distribution, within the chemical space, of neighboring KRAS inhibitor molecules.
+
+	\includegraphics[width=.6\textwidth]{Molecule}
+\end{frame}
+
+
+
+
+\begin{frame}{}
+	\begin{columns}
+		% Column 1
+		\begin{column}{0.55\textwidth}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=.6\textwidth]{Qiskit_Image_0}
+	\end{figure}
+
+\end{column}
+			\begin{column}{0.5\textwidth}
+	
+				
+	{\Huge{THANKS}}
+	
+	to the QAMP community. 
+	
+	\vskip 0.6 truecm
+	
+	{\Large{$\oplus$ SPECIAL THANKS}}
+	
+	\vskip 0.2 truecm
+	to Astri, Radha and our amazing mentor Natalie Hawkins.		
+\vskip 1.6 truecm
+
+Visit our repo at:
+	
+	\url{https://github.com/QCHPC/qiskit_QCBMs}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+\end{document}
+
